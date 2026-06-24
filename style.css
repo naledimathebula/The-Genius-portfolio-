@@ -6,8 +6,8 @@
 
 /* ---------- Design tokens ---------- */
 :root {
-  --accent:        #6c63ff;
-  --accent-dark:   #574fd6;
+  --accent:        #1ea9b6;
+  --accent-dark:   #cedfdb;
   --accent-rgb:    108, 99, 255;
   --bg:            #ffffff;
   --bg-section:    #f8f7ff;     /* ultra-pale violet tint for alternating sections */
@@ -134,7 +134,7 @@ h1, h2, h3, h4 {
   position: relative;
   background:
     linear-gradient(var(--hero-overlay), var(--hero-overlay)),
-    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=80") center/cover no-repeat;
+    url("./assets/bg.jpg") center/cover no-repeat;
   overflow: hidden;
 }
 
@@ -196,7 +196,7 @@ h1, h2, h3, h4 {
 .btn-accent:hover, .btn-accent:focus {
   background: var(--accent-dark);
   border-color: var(--accent-dark);
-  color: #5da026;
+  color: #70e610;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.35);
 }
