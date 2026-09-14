@@ -80,7 +80,7 @@
       <span>a</span>
     </em>
   </h1>
-    <p class="hero-role mb-5"> Aspiring Full-Stack Web Developer &amp; Entrepreneur & founding member of Code Ape</p>
+    <p class="hero-role mb-5"> Aspiring Full-Stack Web Developer &amp; creative technologist & founding member of Code Ape</p>
   </div>
 </section>
 
@@ -528,6 +528,53 @@ Everything I build lives under my own developer brand, Code Ape: don't be afraid
   </div>
 </section>
 
+<!-- Retro Pac-Man Scroll Joystick -->
+<div class="retro-scroll-controller">
+
+    <div class="retro-pacman">
+        <span class="pacman-eye"></span>
+        <span class="pacman-mouth"></span>
+    </div>
+
+    <div class="joystick-instructions">
+        SCROLL
+    </div>
+
+    <div class="joystick-base">
+
+        <button class="joystick-button joystick-up"
+                type="button"
+                aria-label="Scroll up">
+            <i class="bi bi-caret-up-fill"></i>
+        </button>
+
+        <div class="joystick-ring">
+
+            <div class="joystick-stick"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Drag joystick to scroll">
+
+                <span class="joystick-ball"></span>
+
+            </div>
+
+        </div>
+
+        <button class="joystick-button joystick-down"
+                type="button"
+                aria-label="Scroll down">
+            <i class="bi bi-caret-down-fill"></i>
+        </button>
+
+    </div>
+
+    <div class="joystick-status">
+        READY
+    </div>
+
+</div>
+
 </main>
 
 <!-- ===================== FOOTER ===================== -->
@@ -541,6 +588,14 @@ Everything I build lives under my own developer brand, Code Ape: don't be afraid
 
 <!-- Bootstrap JS bundle (navbar collapse) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<scrpit src="script.js"></script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+
+<!-- ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
+<!-- Your JavaScript -->
+<script src="script.js"></script>
 </body>
 </html>
