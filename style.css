@@ -854,15 +854,6 @@ h1, h2, h3, h4 {
     }
   }
 
-.row g-4 g-md-5 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-.row:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(var(--accent-rgb), 0.14) !important;
-  }
 
   .case-study-card{
     overflow: hidden;
@@ -878,6 +869,8 @@ h1, h2, h3, h4 {
 .image-wrapper img{
     width:100%;
     display:block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
     transition:.5s ease;
 }
 
@@ -894,7 +887,8 @@ h1, h2, h3, h4 {
     flex-direction:column;
     justify-content:center;
 
-    padding:2rem;
+    padding:1.5rem;
+    overflow-y:auto;
 
     background:rgba(0,0,0,.85);
     color:#fff;
@@ -904,23 +898,210 @@ h1, h2, h3, h4 {
 }
 
 .case-overlay h3{
-    margin-bottom:1rem;
-    font-size:2rem;
+    margin-bottom:.75rem;
+    font-size:1.5rem;
 }
 
 .case-overlay p{
-    line-height:1.7;
-    font-size:1rem;
+    line-height:1.6;
+    font-size:.95rem;
+    margin-bottom:0;
 }
 
 /* Hover Effects */
 
-.case-study-card:hover .case-overlay{
+.case-study-card:hover .case-overlay,
+.case-study-card:focus-visible .case-overlay{
     transform:translateY(0);
 }
 
 .case-study-card:hover img{
     transform:scale(1.1);
+}
+
+/* ==========================================
+   CASE STUDIES — GRID COLUMNS
+   Auto-fitting grid: 2 across now, 3 across on wide screens
+   once a third case study is added, 1 on phones.
+   ========================================== */
+
+.case-studies-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap:1.75rem;
+    align-items:stretch;
+}
+
+.case-study-card{
+    height:100%;
+}
+
+.case-study-card:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:4px;
+}
+
+
+/* ==========================================
+   PROJECT GROUPS — Clones / Collaborations / Personal
+   Each group sets --group (accent) and --group-ink (text on that
+   accent). Everything below reads those two variables, so a new
+   group only needs one rule block with its own colours.
+   ========================================== */
+
+.project-group{
+    --group:#ffc107;
+    --group-rgb:255, 193, 7;
+    --group-ink:#1a1400;
+}
+
+.project-group + .project-group{
+    margin-top:4.5rem;
+}
+
+.project-group[data-category="clones"]{
+    --group:#ffc107;              /* yellow */
+    --group-rgb:255, 193, 7;
+    --group-ink:#1a1400;
+}
+
+.project-group[data-category="collaborations"]{
+    --group:#3b82f6;              /* blue */
+    --group-rgb:59, 130, 246;
+    --group-ink:#ffffff;
+}
+
+.project-group[data-category="personal"]{
+    --group:#ef233c;              /* red */
+    --group-rgb:239, 35, 60;
+    --group-ink:#ffffff;
+}
+
+/* group header */
+
+.group-header{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:.35rem .85rem;
+    margin-bottom:1.75rem;
+    padding-bottom:1rem;
+    border-bottom:2px solid rgba(var(--group-rgb), .35);
+}
+
+.group-dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--group);
+    box-shadow:0 0 14px rgba(var(--group-rgb), .75);
+    flex-shrink:0;
+}
+
+.group-title{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--text);
+}
+
+.group-count{
+    font-size:.78rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--group-ink);
+    background:var(--group);
+    padding:3px 11px;
+    border-radius:999px;
+}
+
+.group-desc{
+    flex-basis:100%;
+    margin:0;
+    font-size:.95rem;
+    color:var(--text-muted);
+    opacity:.8;
+}
+
+/* coloured hover: ring + glow, top bar slides in, title/buttons pick up the group colour */
+
+.project-group .project-card{
+    position:relative;
+    transition:transform .25s ease, box-shadow .3s ease;
+}
+
+.project-group .project-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:5px;
+    background:var(--group);
+    transform:scaleX(0);
+    transform-origin:left center;
+    transition:transform .35s ease;
+    z-index:2;
+}
+
+.project-group .project-card:hover,
+.project-group .project-card:focus-within{
+    box-shadow:
+        0 0 0 2px var(--group),
+        0 18px 44px rgba(var(--group-rgb), .38) !important;
+}
+
+.project-group .project-card:hover::before,
+.project-group .project-card:focus-within::before{
+    transform:scaleX(1);
+}
+
+.project-group .project-card .card-title{
+    transition:color .25s ease;
+}
+
+.project-group .project-card:hover .card-title,
+.project-group .project-card:focus-within .card-title{
+    color:var(--group);
+}
+
+.project-group .project-card .btn-accent,
+.project-group .project-card .btn-outline-accent{
+    transition:background .25s ease, border-color .25s ease, color .25s ease, transform .2s ease;
+}
+
+.project-group .project-card:hover .btn-accent,
+.project-group .project-card:focus-within .btn-accent{
+    background:var(--group);
+    border-color:var(--group);
+    color:var(--group-ink);
+}
+
+.project-group .project-card:hover .btn-outline-accent,
+.project-group .project-card:focus-within .btn-outline-accent{
+    border-color:var(--group);
+    color:var(--group);
+}
+
+.project-group .project-card .btn-outline-accent:hover,
+.project-group .project-card .btn-outline-accent:focus-visible{
+    background:var(--group);
+    color:var(--group-ink);
+}
+
+.project-group .project-card .btn-accent:hover,
+.project-group .project-card .btn-accent:focus-visible{
+    background:var(--group);
+    border-color:var(--group);
+    color:var(--group-ink);
+    box-shadow:0 8px 24px rgba(var(--group-rgb), .45);
+}
+
+@media (prefers-reduced-motion: reduce){
+    .project-group .project-card,
+    .project-group .project-card::before{
+        transition:none;
+    }
 }
   
 

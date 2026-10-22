@@ -25,33 +25,43 @@
 
         if (!prefersReducedMotion && projectCards.length) {
 
-            gsap.from(projectCards, {
+            const projectGroups =
+                gsap.utils.toArray(".project-group");
 
-                y: 90,
+            projectGroups.forEach((group) => {
 
-                opacity: 0,
+                const groupCards =
+                    group.querySelectorAll(".project-card");
 
-                scale: 0.94,
+                gsap.from(groupCards, {
 
-                rotateX: 8,
+                    y: 90,
 
-                transformOrigin: "center bottom",
+                    opacity: 0,
 
-                duration: 0.9,
+                    scale: 0.94,
 
-                ease: "power3.out",
+                    rotateX: 8,
 
-                stagger: 0.14,
+                    transformOrigin: "center bottom",
 
-                scrollTrigger: {
+                    duration: 0.9,
 
-                    trigger: "#projects",
+                    ease: "power3.out",
 
-                    start: "top 78%",
+                    stagger: 0.14,
 
-                    once: true
+                    scrollTrigger: {
 
-                }
+                        trigger: group,
+
+                        start: "top 80%",
+
+                        once: true
+
+                    }
+
+                });
 
             });
 
